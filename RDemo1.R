@@ -33,4 +33,39 @@ summary(stats) #summary of statistics, min, max, median, percentiles
 #195 distinct countries and country codes - no duplicates
 #birth rate between 7.9 and 49.66 per thousand people
 #internet users rate between 0.9% and 96.55%
-#four income groups - low, lower middle, upper middle, high
+#four income groups (levels when numerated) - low, lower middle, upper middle, high
+
+#------------------------ Using the $ sign ----------------------------------------
+#dollar sign df$colname ==> df[,colname]
+stats$Internet.users #gives entire column
+stats$Internet.users[3] #gives third row of column 
+
+#levels() tells you what levels are for a given column
+levels(stats$Income.Group)
+
+#----------------------- Basic Operations with a DataFrame -------------------------
+stats[1:10,] #subset first ten rows
+stats[c(2,100),] #subset 2nd and 100th row
+
+#in a matrix looking at one row creates a vector (remember need to use drop=F to remain a matrix)
+#in a dataframe, looking at one row is still a dataframe
+is.data.frame(stats[1,]) #TRUE
+#HOWEVER if look only at one column, it becomes a vector
+is.data.frame(stats[,1]) #FALSE
+#must use drop=F to keep single column as a dataframe
+is.data.frame(stats[,1,drop=F]) #TRUE
+
+#multiply columns (done as vectors) and create a new column
+head(stats)
+stats$myCalc <- stats$Birth.rate * stats$Internet.users
+head(stats)
+
+#add a new column with fewer elements and the vector gets recycled - must be multiple
+stats$xyz <- 1:5
+head(stats, n=12)
+
+#remove a column by assigning it to NULL
+stats$myCalc<-NULL
+stats$xyz<-NULL
+head(stats)
+
