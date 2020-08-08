@@ -98,5 +98,27 @@ qplot(data=stats,x=Income.Group, y=Birth.rate,
 qplot(data=stats,x=Internet.users,y=Birth.rate)
 qplot(data=stats,x=Internet.users,y=Birth.rate,
       color=Income.Group, size=I(5))
+#analysis - 
+#low income tend to have highest birthrates and lowest internet availability
+#high income has lowest birthrates and highest internet usage
+#looks like a negative linear-ish regression bet. birth rate and internet usage
 
 #---------------------- BUILDING DATAFRAMES --------------------
+mydf<-data.frame(Countries_2012_Dataset,
+                 Codes_2012_Dataset,
+                 Regions_2012_Dataset)
+head(mydf)
+#change the headings
+colnames(mydf)<-c("Country", "Code", "Region")
+head(mydf)
+
+#can also do it in one line
+rm(mydf)
+mydf<-data.frame(Country=Countries_2012_Dataset,
+                 Code=Codes_2012_Dataset,
+                 Region=Regions_2012_Dataset)
+head(mydf)
+tail(mydf)
+summary(mydf) #195 countries - correct!
+
+#------------------------- MERGING DATAFRAMES -----------------------
