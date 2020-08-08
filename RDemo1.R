@@ -122,3 +122,11 @@ tail(mydf)
 summary(mydf) #195 countries - correct!
 
 #------------------------- MERGING DATAFRAMES -----------------------
+head(stats)
+head(mydf)
+mergedDF<-merge(stats,mydf,by.x="Country.Code", by.y="Code")
+head(mergedDF)
+
+mergedDF$Country<-NULL #remove extra country column
+head(mergedDF)
+str(mergedDF)
