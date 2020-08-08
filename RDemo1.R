@@ -69,3 +69,34 @@ stats$myCalc<-NULL
 stats$xyz<-NULL
 head(stats)
 
+#-------------------- FILTERING a DATAFRAME ---------------------------
+stats$Internet.users <2         #creates a vector of TRUE or FALSE
+filter<-stats$Internet.users <2 #creates a filter of only TRUE values
+stats[filter,]                  #shows only rows that are TRUE
+
+stats[stats$Birth.rate>40,]      #can put the filter directly in the []
+stats[stats$Birth.rate>40 & stats$Internet.users<2,] # use a single & for AND
+
+levels(stats$Income.Group)       #tells you the names of the levels
+stats[stats$Income.Group=="High income",]  #use double == for equals
+
+stats[stats$Country.Name=="Malta",]
+
+#-------------------- VISUALIZATION with QPLOT ---------------------------
+#install.packages("ggplot2")  #if not already installed
+library(ggplot2)
+?qplot
+qplot(data=stats,x=Internet.users,) #creates a histogram automatically!
+qplot(data=stats,x=Income.Group, y=Birth.rate) #automatically picks the right type of plot
+qplot(data=stats,x=Income.Group, y=Birth.rate, size=I(3))
+qplot(data=stats,x=Income.Group, y=Birth.rate, 
+      size=I(3),color=I("blue"))
+qplot(data=stats,x=Income.Group, y=Birth.rate, 
+      geom="boxplot") #creates a boxplot!
+
+#---------------------- Example Visualization -------------
+qplot(data=stats,x=Internet.users,y=Birth.rate)
+qplot(data=stats,x=Internet.users,y=Birth.rate,
+      color=Income.Group, size=I(5))
+
+#---------------------- BUILDING DATAFRAMES --------------------
