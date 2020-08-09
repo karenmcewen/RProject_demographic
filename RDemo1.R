@@ -167,5 +167,41 @@ qplot(data=mergedDF,x=Internet.users,y=Birth.rate,
 #into how the two periods compare. 
 
 #1)download the data into the correct folder
+
 #2)upload the data into R
 stats2<-read.csv(file.choose())
+stats2 #data is 374 obs of 5 variables
+is.data.frame(stats2) #TRUE data is in a dataframe
+
+#3)Basic Data Exploration 
+nrow(stats2) #number of rows is 374
+ncol(stats2) #number of columns is 5
+head(stats2) #gives top 6 rows of the dataframe
+tail(stats2) #gives bottom 6 rows of the dataframe - 374 is last
+
+str(stats2) #structure of the dataframe - 187 Country.Name, 187 Country.Code
+#Region - factor with 6 levels
+#Year 1960 and 2013 are listed as integers
+#Fertility.Rate is a number
+
+summary(stats2) #summary of statistics, min, max, median, percentiles
+#Region - remember each country is listed twice!
+#Year - only 2 years, 1960, 2013 so info here is not meaningful
+#Fertility.Rate min 1.124 max 8.187
+
+#4)Need to split the 1960 data from the 2013 data
+
+
+
+
+
+#4)Do not have life expectancy in this data set - need to 
+#download homework vectors and execute code to read them in
+#Three new vectors - Country_Code, Life_Expectancy_At_Birth_1960, Life_Expectancy_At_Birth_2013
+
+#5)create datafrane from new vectors 
+FertDF<-data.frame(Country_Code, Life_Expectancy_At_Birth_1960, Life_Expectancy_At_Birth_2013)
+head(FertDF)
+
+#6)merge dataframes using by.x=Country.Code and by.y=Country_Code
+FertExpectDF<-merge(stats2,FertDF,by.x=Country.Code, by.y=Country_Code)
