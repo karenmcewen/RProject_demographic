@@ -238,3 +238,6 @@ qplot(data=FertExpectDF2013,x=Fertility.Rate,y=Life_Expectancy_At_Birth_2013,
 # in 1960, most of Africa had Fertility Rates bet. 6-8, in 2013, it was 4-6
 #Life expectancy in 1960 went up to about 74, in 2013 it was up to near 90
 #Life expectancy for both was negatively correlated with birthrate
+
+
+#---------------------- ADVANCED VISUALIZATIONS WITH GGPLOT2 -------------
