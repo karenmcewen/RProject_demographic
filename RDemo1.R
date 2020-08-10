@@ -189,19 +189,52 @@ summary(stats2) #summary of statistics, min, max, median, percentiles
 #Year - only 2 years, 1960, 2013 so info here is not meaningful
 #Fertility.Rate min 1.124 max 8.187
 
-#4)Need to split the 1960 data from the 2013 data
+#4)Need to split (filter) the 1960 data from the 2013 data
 
+#Filter the dataframes
+data1960 <- stats2[stats2$Year==1960,]
+data2013 <- stats2[stats2$Year==2013,]
 
+#Check row counts
+str(data1960) #187 rows
+str(data2013) #187 rows. Equal split.
 
-
-
-#4)Do not have life expectancy in this data set - need to 
+#5)Do not have life expectancy in this data set - need to 
 #download homework vectors and execute code to read them in
 #Three new vectors - Country_Code, Life_Expectancy_At_Birth_1960, Life_Expectancy_At_Birth_2013
 
-#5)create datafrane from new vectors 
-FertDF<-data.frame(Country_Code, Life_Expectancy_At_Birth_1960, Life_Expectancy_At_Birth_2013)
-head(FertDF)
+#6)create two new dataframes from new vectors 
+rm(FertDF)
+
+FertDF1960<-data.frame(Country_Code, Life_Expectancy_At_Birth_1960)
+head(FertDF1960)
+
+FertDF2013<-data.frame(Country_Code, Life_Expectancy_At_Birth_2013)
+head(FertDF2013)
+
 
 #6)merge dataframes using by.x=Country.Code and by.y=Country_Code
-FertExpectDF<-merge(stats2,FertDF,by.x=Country.Code, by.y=Country_Code)
+FertExpectDF1960<-merge(data1960,FertDF1960,by.x="Country.Code", by.y="Country_Code")
+head(FertExpectDF1960)
+
+FertExpectDF2013<-merge(data2013,FertDF2013,by.x="Country.Code", by.y="Country_Code")
+head(FertExpectDF2013)
+
+#7)Create scatterplots of Life Expectancy (y-axis) and
+#Fertility Rate (x-axis) statistics by Country, based on region.
+
+#1960 Scatterplot using qplot
+qplot(data=FertExpectDF1960,x=Fertility.Rate,y=Life_Expectancy_At_Birth_1960,
+      color=Region, size=I(5), shape=I(17), 
+      alpha=I(0.4), main="Life Expectancy vs Fertility Rate 1960")
+
+#2013 Scatterplot using qplot
+qplot(data=FertExpectDF2013,x=Fertility.Rate,y=Life_Expectancy_At_Birth_2013,
+      color=Region, size=I(5), shape=I(17), 
+      alpha=I(0.4), main="Life Expectancy vs Fertility Rate 2013")
+
+#8)ANALYSIS
+#Fertility rate has decreased substantially between 1960 and 2013
+# in 1960, most of Africa had Fertility Rates bet. 6-8, in 2013, it was 4-6
+#Life expectancy in 1960 went up to about 74, in 2013 it was up to near 90
+#Life expectancy for both was negatively correlated with birthrate
