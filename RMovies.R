@@ -92,3 +92,40 @@ r + geom_point(size=5)
 
 #3. ERROR - can't combine the two - thinks you are mapping a label to the data
 #r+ geom_point(aes(color="DarkGreen"))
+
+#----------------- HISTOGRAMS AND DENSITY CHARTS -------
+s<-ggplot(data=movies, aes(x=BudgetMill))
+s +geom_histogram(binwidth = 10)
+
+#add color- mapping to genre
+s +geom_histogram(binwidth = 10, aes(fill=Genre))
+
+#add a border - set this color=black (chart#3)
+s +geom_histogram(binwidth = 10, aes(fill=Genre), color="Black")
+
+#sometimes you need density charts - 
+#illustrates probability density function - area in band is probability
+s+geom_density(aes(fill=Genre), position="stack")
+
+#----------------- STARTING LAYER TIPS -------------
+
+t<-ggplot(data=movies, aes(x=AudRating))
+t+geom_histogram(binwidth = 10,
+                 fill="White", color="Blue")
+
+#Another way to do this...using overriding
+#this is more flexible if changing x often
+#but not best coding practice
+t<-ggplot(data=movies)
+t+geom_histogram(binwidth = 10, 
+                 aes(x=AudRating),
+                 fill="White", color="Blue")
+
+t+geom_histogram(binwidth = 10, 
+                 aes(x=CriticRating),
+                 fill="White", color="Blue")
+
+#skeleton plot - for using different data sets
+
+u<-ggplot()
+
