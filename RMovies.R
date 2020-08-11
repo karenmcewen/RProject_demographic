@@ -67,7 +67,7 @@ q+geom_point(aes(size=CriticRating))
 q+geom_point(aes(size=BudgetMill))
 #note that q doesn't change
 
-#example3
+#example3 - 2nd deliverable chart
 q + geom_point(aes(x=BudgetMill)) #note that xaxis stays same
 q + geom_point(aes(x=BudgetMill))+
   xlab("BudgetMill $$$")
@@ -76,3 +76,19 @@ q + geom_point(aes(x=BudgetMill))+
 q + geom_line(size=1)+geom_point()
 
 #-------------------------MAPPING vs SETTING ---------------------
+
+r<-ggplot(data=movies, aes(x=CriticRating, y=AudRating))
+r+geom_point() 
+
+#Add color
+#1. Mapping (what we've done so far):
+# this maps the data from Genre as the colors
+r + geom_point(aes(color=Genre)) 
+r + geom_point(aes(size=BudgetMill))
+
+#2. Setting - just sets the color for all points to what we want
+r + geom_point(color="DarkGreen")
+r + geom_point(size=5)
+
+#3. ERROR - can't combine the two - thinks you are mapping a label to the data
+#r+ geom_point(aes(color="DarkGreen"))
